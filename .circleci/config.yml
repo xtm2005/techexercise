@@ -47,8 +47,8 @@ jobs:
           - composer-v1-{{ checksum "composer.lock" }}
           # fallback to using the latest cache if no exact match is found
           - composer-v1-
-      - run: composer install 
-          - save_cache:
+      - run: composer install -n --prefer-dist
+      - save_cache:
           key: composer-v1-{{ checksum "composer.lock" }}
           paths:
             - vendor
