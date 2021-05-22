@@ -65,33 +65,26 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
             <div class="content">
                 <p>
+                No Authentication / Access Token is needed as not requested in the exercise. 
+                <div>
                 Please access the api via /api/tech_exercise.
                 Routes requested in document :
-                
-                Route::get('/tech_exercise/get_all_records','ApiMaster@getAllResults');
-Route::post('/tech_exercise/', 'ApiMaster@createEntry');
-Route::get('/tech_exercise/{keyName}', 'ApiMaster@retrieve');
-
-                Example :
+                </div>
+                <div>
+                <span>Available Routes:</span>
+                <ul>
+                    <li>Route::get('/tech_exercise/get_all_records','ApiMaster@getAllResults');</li>
+                    <li>Route::post('/tech_exercise/', 'ApiMaster@createEntry');</li>
+                    <li>Route::get('/tech_exercise/{keyName}', 'ApiMaster@retrieve');</li>
+                </ul>
+                Example :<br />
                 GET - https://techexercise2021.herokuapp.com/api/tech_exercise
+                
+                <br />
                 JSON Body - {"anothervalue":"new value has been sent x "}
-
+                <br />
                 Response :
 
                 {
