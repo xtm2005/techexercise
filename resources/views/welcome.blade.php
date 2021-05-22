@@ -80,8 +80,25 @@
             @endif
 
             <div class="content">
-                
+                <p>
                 Please access the api via /api/tech_exercise.
+                Routes requested in document :
+                
+                Route::get('/tech_exercise/get_all_records','ApiMaster@getAllResults');
+Route::post('/tech_exercise/', 'ApiMaster@createEntry');
+Route::get('/tech_exercise/{keyName}', 'ApiMaster@retrieve');
+
+                Example :
+                GET - https://techexercise2021.herokuapp.com/api/tech_exercise
+                JSON Body - {"anothervalue":"new value has been sent x "}
+
+                Response :
+
+                {
+                   "message": "created at 2021-05-22 14:41:58 : timestamp value = 1621694518"
+                }
+
+                </p>
             <div>
         </div>
     </body>
