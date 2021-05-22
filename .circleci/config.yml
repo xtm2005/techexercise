@@ -39,32 +39,7 @@ jobs:
 
       # Download and cache dependencies
 
-      # composer cache
-      - restore_cache:
-          keys:
-          # "composer.json" can be used if "composer.json"
-          # is not committed to the repository.
-          - composer-v1-{{ checksum "composer.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - composer-v1-
-      - run: composer install -n --prefer-dist
-      - save_cache:
-          key: composer-v1-{{ checksum "composer.lock" }}
-          paths:
-            - vendor
-
-      # node cache
-      - restore_cache:
-          keys:
-            - node-v4-{{ checksum "package.json" }}
-            - node-v4-
-      - run: npm install
-      - save_cache:
-          key: node-v4-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-            - ~/.yarn
-
+      
       # prepare the database
       - run: touch storage/testing.sqlite
       - run: php artisan migrate --env=testing --database=mysql --force
