@@ -27,7 +27,7 @@
             .flex-center {
                 align-items: center;
                 display: flex;
-                justify-content: center;
+                justify-content: left;
             }
 
             .position-ref {
@@ -44,14 +44,23 @@
                 text-align: center;
             }
 
+            .content.fiftypercent {
+                width: 75vw;
+                margin: 0 auto;
+                text-align: left;
+            }
+
             .title {
                 font-size: 84px;
             }
-
+            .notice {
+                font-size:30px;
+                padding-bottom:5px;
+            }
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
-                font-size: 13px;
+                font-size: 12px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
@@ -65,19 +74,24 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            <div class="content">
+            <div class="content fiftypercent">
                 <p>
-                No Authentication / Access Token is needed as not requested in the exercise. 
+                <div class="notice">
+                No Authentication / Access Token is needed 
+                <br />as not requested in the exercise.
+                </div> 
                 <div>
                 Please access the api via /api/tech_exercise.
-                Routes requested in document :
+                Routes requested in document : <br />
                 </div>
+                
                 <div>
-                <span>Available Routes:</span>
+
+                <span style="padding-top: 9px;display: block;"><strong>Available Routes:</strong></span>
                 <ul>
-                    <li>Route::get('/tech_exercise/get_all_records','ApiMaster@getAllResults');</li>
-                    <li>Route::post('/tech_exercise/', 'ApiMaster@createEntry');</li>
-                    <li>Route::get('/tech_exercise/{keyName}', 'ApiMaster@retrieve');</li>
+                    <li>get('/tech_exercise/get_all_records'</li>
+                    <li>post('/tech_exercise/'</li>
+                    <li>get('/tech_exercise/{keyName}'</li>
                 </ul>
                 Example :<br />
                 GET - https://techexercise2021.herokuapp.com/api/tech_exercise
