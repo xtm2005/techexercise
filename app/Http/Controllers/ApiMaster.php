@@ -12,8 +12,8 @@ class ApiMaster extends Controller
 {
     public function getAllResults() {
         $result= keystore::all();
-        if isset($result) {
-        return $result;
+        if (isset($result)) {
+            return $result;
         }
         else {
             return 'No data yet in the database';
