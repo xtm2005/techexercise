@@ -12,7 +12,12 @@ class ApiMaster extends Controller
 {
     public function getAllResults() {
         $result= keystore::all();
+        if isset($result) {
         return $result;
+        }
+        else {
+            return 'No data yet in the database';
+        }
     }
 
     public function createEntry(Request $request) {
@@ -61,13 +66,17 @@ class ApiMaster extends Controller
     }
     public function retrieve(Request $request, $keyName) {
         $result  = keystore::where('keyName',$keyName)->get();
+        if (isset($result)) {
+            return 'No such key is found, please create your entry';
+        }
+        
         if (is_null($request['timestamp'])) {
             return $result[0]->keyValue;
         }
         else
         {
             $result = KeyVersioning::where('KeyId',$result[0]->id)->where('version',$request['timestamp'])->get();
-            if (isset($result->count()>0)) 
+            if ($result->count()>0) 
                 return $result[0]->value;            
             else
                 return 'No version found with the timestamp provided';
