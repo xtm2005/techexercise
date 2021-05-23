@@ -67,7 +67,7 @@ class ApiMaster extends Controller
         else
         {
             $result = KeyVersioning::where('KeyId',$result[0]->id)->where('version',$request['timestamp'])->get();
-            if ($result->count()>0) 
+            if (isset($result->count()>0)) 
                 return $result[0]->value;            
             else
                 return 'No version found with the timestamp provided';
