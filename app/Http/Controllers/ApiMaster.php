@@ -65,19 +65,21 @@ class ApiMaster extends Controller
     
     }
     public function retrieve(Request $request, $keyName) {
+        //return $keyName;
         $result  = keystore::where('keyName',$keyName)->get();
-        if (isset($result)) {
-            return 'No such key is found, please create your entry';
+        if (isset($result) && is_null($request['timestamp'])) {
+            return $result;
         }
         
-        if (is_null($request['timestamp'])) {
-            return $result[0]->keyValue;
-        }
         else
         {
+            $firstresult = keystore::where('id',$result[0]->id)->where('version',$request['timestamp'])->get();
+            if ($firstresult->count()>0 )
+                return $result[0];
+            
             $result = KeyVersioning::where('KeyId',$result[0]->id)->where('version',$request['timestamp'])->get();
             if ($result->count()>0) 
-                return $result[0]->value;            
+                return $result[0];            
             else
                 return 'No version found with the timestamp provided';
         }
