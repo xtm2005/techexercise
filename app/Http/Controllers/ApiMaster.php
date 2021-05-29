@@ -43,7 +43,6 @@ class ApiMaster extends Controller
             $keyVersion->value = $result[0]->keyValue;
             $keyVersion->version = $result[0]->version;
             $keyVersion->save();
-            
             //check if key exists 
             $result[0]->keyValue =$data[key($data)];
             $result[0]->version = $current_timestamp;
