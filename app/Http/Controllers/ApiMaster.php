@@ -21,7 +21,9 @@ class ApiMaster extends Controller
     }
 
     public function createEntry(Request $request) {
-         $data = json_decode($request->getContent(), true);
+        if (count($request->all())>0) {
+        $data = json_decode($request->getContent(), true);
+         
          $keytocheck= key($data);
 
         //add some validations here if > key value store;
@@ -62,13 +64,18 @@ class ApiMaster extends Controller
         return response()->json([
         "message" => $message . $currenttime . ' : timestamp value = ' . $current_timestamp
         ], 201);
+    }
+    else {
+        return response()->json([
+            "message" => 'Request is empty'], 500);
+    }
     
     }
     public function retrieve(Request $request, $keyName) {
         //return $keyName;
         $result  = keystore::where('keyName',$keyName)->get();
-        if (isset($result) && is_null($request['timestamp'])) {
-            return $result;
+        if (isset($result[0]) && is_null($request['timestamp'])) {
+            return $result[0];
         }
         
         else
@@ -84,10 +91,6 @@ class ApiMaster extends Controller
                 return 'No version found with the timestamp provided';
         }
         
-    }
-
-    public function retrieveVersions() {
-        //create new table and see if relationships is available in laravel.
     }
 
 }
