@@ -16,7 +16,11 @@ class CheckApi extends TestCase
      *
      * @return void
      */
-    public function testPostNewKeyValue()
+    public function testCheckEndpointWithNoData() {
+        $this->json('GET','api/tech_exercise/get_all_records')->assertStatus(200);
+    }
+
+     public function testPostNewKeyValue()
     {
         //Insert first object
         $response = $this->postJson('/api/tech_exercise', ['FirstKey' => '1st Value'])->assertStatus(201);
@@ -57,7 +61,6 @@ class CheckApi extends TestCase
     public function testUpdateValues()
     {
 
-        
         $response = $this->postJson('/api/tech_exercise', ['SecondKey' => '2nd Altered Value'])->assertStatus(201);
         $response = $this->getJson('/api/tech_exercise/SecondKey')->assertJson([
             'keyName'=>'SecondKey',
